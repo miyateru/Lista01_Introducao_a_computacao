@@ -5,12 +5,12 @@ def bin_to_dec(b: str) -> int:
     decimal : int = 0
     negativo : bool = False
 
-    if ("-" in b) and (0 != b.index("-")):
+    if ('-' in b) and (0 != b.index('-')):
         raise ValueError
 
-    if "-" in b:
+    if '-' in b:
         negativo = True
-        b = b.replace("-", "")
+        b = b.replace('-', "")
 
     b = b[::-1]
     
