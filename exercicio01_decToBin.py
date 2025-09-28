@@ -23,7 +23,7 @@ def dec_to_bin(n: int) -> str:
     
     return resultado[::-1]
 
-def main():
+def main() -> None:
     num = input("> ")
     
     try:
@@ -37,6 +37,8 @@ def main():
         print("Valor excede o maximo. Muito grande :(")
     except ExceptionGroup as error:
         print(f"Não especificado. Error: {error}")
+    
+    return None
 
 if __name__ == "__main__":
     main()
