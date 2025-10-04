@@ -1,27 +1,29 @@
-def dec_to_bin(n: int) -> str:
-    resultado : str = ""
+def dec_to_oct(n: int) -> str:
+    result : str = ""
     
     if (n == 0):
         return str(0)
     
-    # Ver a posicao do sinal
-    negativo : bool = False
+    negative : bool = False
     if n < 0:
-        negativo = True
+        negative = True
         n = abs(n)
     
     while (n > 0):
-        resultado += str(n % 8)
+        result += str(n % 8)
         n //= 8
     
-    if (negativo):
-        resultado += '-'
+    if (negative):
+        result += '-'
     
-    return resultado[::-1]
+    return result[::-1]
 
 def main() -> None:
-    num = int(input("> "))
-    print(dec_to_bin(num))
+    try:
+        num = int(input("> "))
+        print(dec_to_oct(num))
+    except Exception as error:
+        print(f"Uncaught error: {error}, {type(error)}")
 
     return None
 

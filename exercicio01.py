@@ -1,43 +1,30 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# Decimal inteiro → Binário (método das divisões sucessivas) 
 def dec_to_bin(n: int) -> str:
-    resultado : str = ""
-    
+    negative : bool = False
+    result : str = ""
+
     if (n == 0):
         return str(0)
     
-    # Ver a posicao do sinal
-    negativo : bool = False
-    if n < 0:
-        negativo = True
+    if (n < 0):
+        negative = True
         n = abs(n)
     
     while (n > 0):
-        resultado += str(n % 2)
+        result += str(n % 2)
         n //= 2
     
-    if (negativo):
-        resultado += '-'
+    if (negative):
+        result += '-'
     
-    return resultado[::-1]
+    return result[::-1]
 
 def main() -> None:
-    num = input("> ")
-    
     try:
-        num = float(num)
-        print(dec_to_bin(int(num)))
-    except ValueError:
-        print("Valor invalido.")
-    except TypeError:
-        print("Tipo invalido.")
-    except OverflowError:
-        print("Valor excede o maximo. Muito grande :(")
-    except ExceptionGroup as error:
-        print(f"Não especificado. Error: {error}")
-    
+        num = int(input("> "))
+        print(dec_to_bin(num))
+    except Exception as error:
+        print(f"Uncaught error: {error}", {type(error)})
+
     return None
 
 if __name__ == "__main__":

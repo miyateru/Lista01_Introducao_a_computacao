@@ -1,8 +1,7 @@
-def hex_to_dec(b: str) -> int:
-    decimal : int = 0
-    negativo : bool = False
+import errors_check
 
-    equivalencia : dict[str, int] = {
+def hex_to_dec(b: str) -> int:
+    char_table : dict[str, int] = {
         "0" : 0,
         "1" : 1,
         "2" : 2,
@@ -20,33 +19,33 @@ def hex_to_dec(b: str) -> int:
         "E" : 14,
         "F" : 15,
     }
+    decimal : int = 0
+    negative : bool = False
 
     b = b.upper()
 
-    if ("-" in b) and (0 != b.index("-")):
-        raise ValueError
+    errors_check.check_signal_placement(b)
     
     for N in range(len(b)):
-        if (b[N] not in equivalencia) and (b[N] != "-"):
+        if (b[N] not in char_table) and (b[N] != "-"):
             raise TypeError
 
     if "-" in b:
-        negativo = True
+        negative = True
         b = b.replace("-", "")
 
     b = b[::-1]
     
     for N in range(len(b)):
-        decimal += equivalencia[b[N]] * (16 ** N)
+        decimal += char_table[b[N]] * (16 ** N)
 
-    if negativo:
+    if negative:
         decimal *= (-1)
 
     return decimal
 
 def main () -> None:
     num = input(" > ")
-    
     print(hex_to_dec(num))
 
     return None

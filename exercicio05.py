@@ -1,10 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# Decimal inteiro → Binário (método das divisões sucessivas) 
 def dec_to_hex(n: int) -> str:
-    resultado : str = ""
-    equivalencia : dict[int, str] = {
+    char_table : dict[int, str] = {
         0 : '0',
         1 : '1',
         2 : '2',
@@ -22,29 +17,32 @@ def dec_to_hex(n: int) -> str:
         14 : 'E',
         15 : 'F',
     }
+    result : str = ""
     
     if (n == 0):
         return str(0)
-    
-    # Ver a posicao do sinal
-    negativo : bool = False
+
+    negative : bool = False
     if n < 0:
-        negativo = True
+        negative = True
         n = abs(n)
     
     while (n > 0):
         num : int = n % 16
-        resultado += equivalencia[num]
+        result += char_table[num]
         n //= 16
     
-    if (negativo):
-        resultado += '-'
+    if (negative):
+        result += '-'
     
-    return resultado[::-1]
+    return result[::-1]
 
 def main() -> None:
-    num = int(input("> "))
-    print(dec_to_hex(num))
+    try:
+        num = int(input("> "))
+        print(dec_to_hex(num))
+    except Exception as error:
+        print(f"Uncaught error: {error}, {type(error)}")
 
     return None
 

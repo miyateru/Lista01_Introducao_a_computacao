@@ -1,19 +1,15 @@
+import errors_check
 
 def oct_to_dec(b: str) -> int:
     decimal : int = 0
-    negativo : bool = False
+    negative : bool = False
+    valid_charset : list[str] = ['0', '1', '2', '3', '4', '5', '6', '7', '-']
 
-    characteresValidos : list[str] = ['0', '1', '2', '3', '4', '5', '6', '7', '-']
-
-    if ("-" in b) and (0 != b.index("-")):
-        raise ValueError
-    
-    for N in range(len(b)):
-        if b[N] not in characteresValidos:
-            raise TypeError
-
+    errors_check.check_charset(valid_charset, b)
+    errors_check.check_signal_placement(b)
+  
     if "-" in b:
-        negativo = True
+        negative = True
         b = b.replace("-", "")
 
     b = b[::-1]
@@ -21,16 +17,17 @@ def oct_to_dec(b: str) -> int:
     for N in range(len(b)):
         decimal += int(b[N]) * (8 ** N)
     
-    if negativo:
+    if negative:
         decimal *= (-1)
 
     return decimal
 
 def main () -> None:
-    num = input(" > ")
-    
-    print(oct_to_dec(num))
-
+    try:
+        num = input("> ")
+        print(oct_to_dec(num))
+    except Exception as error:
+        print(f"Uncaught error: {error}", {type(error)})
     return None
 
 if __name__ == "__main__":

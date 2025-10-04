@@ -1,8 +1,3 @@
-
-# position_a = ord('A')
-# print(chr(position_a + 2354))
- 
-# 12, 10, 8
 def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
     resultado : str = ""
     
