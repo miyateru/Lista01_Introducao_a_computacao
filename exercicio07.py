@@ -8,10 +8,16 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
         num = num.replace("-", "")
     
     # Trata bases diferentes para o sistema decimal
-    num_decimal = 0 
+    num_decimal : int = 0
+    num = num[::-1]
     for N in range(len(num)):
-        num_decimal += int(num[N]) * (base_from ** N)    
-    print(num_decimal)
+        if base_from > 10 and num[N].isalpha():
+            num_decimal += (ord(num[N]) - ord('A') + 10) * (base_from ** N)
+        else:
+            num_decimal += int(num[N]) * (base_from ** N)
+
+    for char in str(num_decimal):
+        resultado += char
 
     # if base_from == base_to:
     #     return num
@@ -43,7 +49,7 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
         #else:
         #    print("Não :p")
 
-    return resultado[::-1]
+    return resultado
   
 def main () -> None:
     num : str = input("Numero a ser convertido: ")
