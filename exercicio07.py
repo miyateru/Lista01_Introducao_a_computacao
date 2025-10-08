@@ -1,13 +1,16 @@
 def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
     resultado : str = ""
     
-    # Ver se o sinal é negativo
-    negativo: bool = False
+    # Converter as entradas que possuem letras para maiúsculas
+    num = num.upper();
+
+    # Ver se o número é negativo
+    negative : bool = False
     if "-" in num:
-        negativo = True
+        negative = True
         num = num.replace("-", "")
     
-    # Trata bases diferentes para o sistema decimal
+    # base_from -> base decimal (10)
     num_decimal : int = 0
     num = num[::-1]
     for N in range(len(num)):
@@ -16,43 +19,23 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
         else:
             num_decimal += int(num[N]) * (base_from ** N)
 
-    for char in str(num_decimal):
-        resultado += char
+    #Converter de decimal para a base escolhida (base_to)
+    while num_decimal > 0:
+        num_base : int =  num_decimal % base_to
+        num_decimal //= base_to
 
-    # if base_from == base_to:
-    #     return num
-    # # base_from -> base_to
-    # elif base_from == 10:
-    #     int_num : int = int(num) 
-        
-    #     while int_num > 0:
-    #         posicao : int = ord('A')
-    #         parcela : int = int_num % base_to
-            
-    #         if parcela >= 10:
-    #             while posicao < (parcela - 10) + ord('A'):
-    #                 posicao += 1
-    #             resultado += chr(posicao)
-    #         else:
-    #             resultado += str(int_num % base_to)
-                
-    #         int_num //= base_to
-        
-    #     if (negativo):
-    #         resultado = '-' + resultado
-    # base_from -> base_10 -> base_to
-    #else:
-        # base_to < 10
-        # int_num : int = int(num) 
-        # decimal += num * (base_to ** posicao_index)
-        # base_to > 10
-        #else:
-        #    print("Não :p")
+        if num_base > 10:
+            resultado += str(int(ord('A') + num_decimal - 10))
+        else:
+            resultado += str(num_base)
 
-    return resultado
-  
+    if negative:
+        resultado += '-'
+
+    return resultado[::-1]
+
 def main () -> None:
-    num : str = input("Numero a ser convertido: ")
+    num : str = input("Número a ser convertido: ")
     base_to : int = int(input("Da base: "))
     base_from : int = int(input("Para a base: "))
     
