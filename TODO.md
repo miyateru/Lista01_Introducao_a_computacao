@@ -13,3 +13,9 @@ erradas etc.) com mensagens claras de erro.
 - Sinais em posições errada
 
 - Ex02 in main
+
+## PARA A PESSOA COM O USERNAME meta.naito NO GITHUB
+## SERIO, É SO PRA ELA(E) SEI LA
+
+criar uma interface para a conversao dos sistemas
+formatar o código (colocar parenteses desnecessarios, por exemplo!)
