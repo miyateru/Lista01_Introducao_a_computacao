@@ -7,27 +7,33 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
         negativo = True
         num = num.replace("-", "")
     
-    if base_from == base_to:
-        return num
-    # base_from -> base_to
-    elif base_from == 10:
-        int_num : int = int(num) 
+    # Trata bases diferentes para o sistema decimal
+    num_decimal = 0 
+    for N in range(len(num)):
+        num_decimal += int(num[N]) * (base_from ** N)    
+    print(num_decimal)
+
+    # if base_from == base_to:
+    #     return num
+    # # base_from -> base_to
+    # elif base_from == 10:
+    #     int_num : int = int(num) 
         
-        while int_num > 0:
-            posicao : int = ord('A')
-            parcela : int = int_num % base_to
+    #     while int_num > 0:
+    #         posicao : int = ord('A')
+    #         parcela : int = int_num % base_to
             
-            if parcela >= 10:
-                while posicao < (parcela - 10) + ord('A'):
-                    posicao += 1
-                resultado += chr(posicao)
-            else:
-                resultado += str(int_num % base_to)
+    #         if parcela >= 10:
+    #             while posicao < (parcela - 10) + ord('A'):
+    #                 posicao += 1
+    #             resultado += chr(posicao)
+    #         else:
+    #             resultado += str(int_num % base_to)
                 
-            int_num //= base_to
+    #         int_num //= base_to
         
-        if (negativo):
-            resultado = '-' + resultado
+    #     if (negativo):
+    #         resultado = '-' + resultado
     # base_from -> base_10 -> base_to
     #else:
         # base_to < 10
