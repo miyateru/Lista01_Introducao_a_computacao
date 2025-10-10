@@ -4,6 +4,10 @@
 
 - Linguagem do codigo e da saida
 
+## Features
+
+- Dynamic width range for printing line decorations 😊
+
 ## Exception handling
 
 Trate entradas inválidas (caracteres fora do alfabeto da base, sinais em posições
