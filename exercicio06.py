@@ -1,52 +1,45 @@
 import errors_check
 
-def hex_to_dec(b: str) -> int:
+def hex_to_dec(hexadecimal : str) -> int:
     char_table : dict[str, int] = {
-        "0" : 0,
-        "1" : 1,
-        "2" : 2,
-        "3" : 3,
-        "4" : 4,
-        "5" : 5,
-        "6" : 6,
-        "7" : 7,
-        "8" : 8,
-        "9" : 9,
-        "A" : 10,
-        "B" : 11,
-        "C" : 12,
-        "D" : 13,
-        "E" : 14,
-        "F" : 15,
+        '0' : 0, '1' : 1, '2' : 2, '3' : 3, '4' : 4,
+        '5' : 5, '6' : 6, '7' : 7, '8' : 8, '9' : 9,
+        '-' : None,
+    }
+    entry_charset : dict[int, str] = {
+        0 : '0', 1 : '1', 2 : '2', 3 : '3', 4 : '4',
+        5 : '5', 6 : '6', 7 : '7', 8 : '8', 9 : '9',
+        10 : 'A', 11 : 'B', 12 : 'C', 13 : 'D', 14 : 'E',
+        15 : 'F',
     }
     decimal : int = 0
     negative : bool = False
 
-    b = b.upper()
+    hexadecimal = hexadecimal.upper()
 
-    errors_check.check_signal_placement(b)
-    
-    for N in range(len(b)):
-        if (b[N] not in char_table) and (b[N] != "-"):
-            raise TypeError
+    errors_check.check_charset(entry_charset, hexadecimal)
+    errors_check.check_signal_placement(hexadecimal)
 
-    if "-" in b:
+    if ('-' in hexadecimal):
         negative = True
-        b = b.replace("-", "")
+        hexadecimal = hexadecimal.replace("-", "")
 
-    b = b[::-1]
+    hexadecimal = hexadecimal[::-1]
     
-    for N in range(len(b)):
-        decimal += char_table[b[N]] * (16 ** N)
+    for N in range(len(hexadecimal)):
+        decimal += char_table[hexadecimal[N]] * (16 ** N)
 
     if negative:
-        decimal *= (-1)
+        decimal *= -1
 
     return decimal
 
 def main () -> None:
-    num = input(" > ")
-    print(hex_to_dec(num))
+    try:
+        num = input('> ')
+        print(hex_to_dec(num))
+    except Exception as error:
+        print(f'Uncaught error: {error}, {type(error)}')
 
     return None
 

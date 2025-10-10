@@ -1,24 +1,26 @@
 import errors_check
 
-def bin_to_dec(b: str) -> int:
+def bin_to_dec(binary : str) -> int:
+    entry_charset : dict[str : int] = {
+        '0' : 0, '1' : 1, '-' : None,
+    }
     decimal : int = 0
     negative : bool = False
-    valid_charset : list[str] = ['-', '0', '1']
 
-    errors_check.check_charset(valid_charset, b)
-    errors_check.check_signal_placement(b)
+    errors_check.check_charset(entry_charset, binary)
+    errors_check.check_signal_placement(binary)
 
-    if '-' in b:
+    if ('-' in binary):
         negative = True
-        b = b.replace('-', "")
+        binary = binary.replace('-', "")
 
-    b = b[::-1]
+    binary = binary[::-1]
 
-    for N in range(len(b)):
-        decimal += int(b[N]) * (2 ** N)
+    for N in range(len(binary)):
+        decimal += int(binary[N]) * (2 ** N)
     
-    if negative:
-        decimal *= (-1)
+    if (negative):
+        decimal *= -1
 
     return decimal
 

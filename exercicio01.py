@@ -1,17 +1,28 @@
-def dec_to_bin(n: int) -> str:
-    negative : bool = False
-    result : str = ""
+import errors_check
 
-    if (n == 0):
+def dec_to_bin(decimal : int) -> str:
+    entry_charset : dict[str : int] = {
+        '0' : 0, '1' : 1, '2' : 2, '3' : 3, '4' : 4,
+        '5' : 5, '6' : 6, '7' : 7, '8' : 8, '9' : 9,
+        '-' : None,
+    }
+    negative : bool = False
+    result : str = str()
+
+    errors_check.check_charset(entry_charset, str(decimal))
+    errors_check.check_signal_placement(str(decimal))
+    decimal = int(decimal)
+
+    if (decimal == 0):
         return str(0)
-    
-    if (n < 0):
+  
+    if (decimal < 0):
         negative = True
-        n = abs(n)
+        decimal = abs(decimal)
     
-    while (n > 0):
-        result += str(n % 2)
-        n //= 2
+    while (decimal > 0):
+        result += str(decimal % 2)
+        decimal //= 2
     
     if (negative):
         result += '-'
@@ -20,7 +31,7 @@ def dec_to_bin(n: int) -> str:
 
 def main() -> None:
     try:
-        num = int(input("> "))
+        num = input("> ")
         print(dec_to_bin(num))
     except Exception as error:
         print(f"Uncaught error: {error}", {type(error)})
