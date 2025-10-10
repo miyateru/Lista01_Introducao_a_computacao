@@ -1,5 +1,6 @@
-#!/usr/bin/env python3
+
 # -*- coding: utf-8 -*-
+import os
 from exercicio01 import dec_to_bin
 from exercicio02 import bin_to_dec
 from exercicio03 import dec_to_oct
