@@ -2,7 +2,7 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
     resultado : str = ""
     
     # Converter as entradas que possuem letras para maiúsculas
-    num = num.upper();
+    num = num.upper()
 
     # Ver se o número é negativo
     negative : bool = False
