@@ -4,13 +4,13 @@ class invalid_charset(Exception):
 class invalid_syntax(Exception):
      pass
 
-def check_charset(charset : dict[str : int], vector : str) -> None:
+def charset(charset : dict[str, int | None], vector : str) -> None:
     for char in vector:
         if char not in charset.keys():
-            raise invalid_charset(f"Character {char} is not in the valid charset (out of base)!")
+            raise invalid_charset
     return None
 
-def check_signal_placement(vector : str) -> None:
+def signal_placement(vector : str) -> None:
     if ('-' in vector) and (0 != vector.index('-')):
-            raise invalid_syntax("Incorrect placement of signal!¡")
+            raise invalid_syntax
     return None
