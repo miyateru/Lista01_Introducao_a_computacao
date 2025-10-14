@@ -1,4 +1,4 @@
-#COLOCA O TREM DE LINUX AQUI DNV !!!!
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import platform
 from exercicio01 import dec_to_bin
@@ -9,15 +9,16 @@ from exercicio05 import dec_to_hex
 from exercicio06 import hex_to_dec
 from exercicio07 import convert_base
 from exercicio08 import decfrac_to_bin
+from exercicio09 import binfrac_to_dec
+from automated_tests import main_test
 from os import system
 from time import sleep
-# from automated_tests import algoKKKKK
 
 timer : int = 1
 
 def chooseNumber() -> int:
-    num : int = int(input("    > Número a ser convertido: "))
-    return num
+    number : int = int(input("    > Número a ser convertido: "))
+    return number
 
 def conversionComplete() -> str:
     text : str = "    > Número convertido:"
@@ -28,10 +29,10 @@ def retry() -> None:
 
     print("\n> Gostaria de realizar outra conversão?")
 
-    option = str(input("\nDigite sua escolha (S/N): "))
-    option = option.upper()
+    option_str = str(input("\nDigite sua escolha (S/N): "))
+    option_str = option_str.upper()
 
-    if (option == 'S'):
+    if (option_str == 'S'):
         print ("> Retornando ao menu de opções...")
         clearTerminal()
         option1()
@@ -85,75 +86,75 @@ def option1() -> None:
         clearTerminal()
         print("1. Decimal para Binário \n")
         
-        dec : int = chooseNumber()
-        print(conversionComplete(), dec_to_bin(dec))
+        decimal : int = chooseNumber()
+        print(conversionComplete(), dec_to_bin(decimal))
         retry()
 
     elif (option == 2):
         clearTerminal()
         print("2. Binário para decimal \n")
         
-        bin : str = str(chooseNumber())
-        print(conversionComplete(), bin_to_dec(bin))
+        binary : str = str(chooseNumber())
+        print(conversionComplete(), bin_to_dec(binary))
         retry()
     
     elif (option == 3):
         clearTerminal()
         print("3. Decimal para octal \n")
         
-        dec = chooseNumber()
-        print(conversionComplete(), dec_to_oct(dec))
+        decimal = chooseNumber()
+        print(conversionComplete(), dec_to_oct(decimal))
         retry()
 
     elif (option == 4):
         clearTerminal()
         print("4. Octal para decimal \n")
         
-        oct : str = str(chooseNumber())
-        print(conversionComplete(), oct_to_dec(oct))
+        octal : str = str(chooseNumber())
+        print(conversionComplete(), oct_to_dec(octal))
         retry()
 
     elif (option == 5):
         clearTerminal()
         print("5. Decimal para hexadecimal \n")
         
-        dec = chooseNumber()
-        print(conversionComplete(), dec_to_hex(dec))
+        decimal = chooseNumber()
+        print(conversionComplete(), dec_to_hex(decimal))
         retry()
 
     elif (option == 6):
         clearTerminal()
         print("6. Hexadecimal para decimal \n")
         
-        hex : str = str(chooseNumber())
-        print(conversionComplete(), hex_to_dec(hex))
+        hexadecimal : str = str(chooseNumber())
+        print(conversionComplete(), hex_to_dec(hexadecimal))
         retry()
 
     elif (option == 7):
         clearTerminal()
         print("7. Conversão genérica de bases \n")
         
-        num : str = str(chooseNumber())
-        base_to : int = int(input("    > Escolha a base original do número: "))
-        base_from : int = int(input("    > Escolha a base que o número será convertido: "))
-        print(conversionComplete(), convert_base(num, base_to, base_from))
+        number : str = str(chooseNumber())
+        base_to : int = int(input("    > Digite a base original do número: "))
+        base_from : int = int(input("    > Digite a base que o número será convertido: "))
+        print(conversionComplete(), convert_base(number, base_to, base_from))
         retry()
 
     elif (option == 8):
         clearTerminal()
         print("8. Decimal fracionário para binário fracionário")
-
-        dec : float = float(chooseNumber())
-        max_frac : int = int(input("    > Escolha a precisão da parte fracionária: "))
-        print (conversionComplete(), decfrac_to_bin(num, max_frac))
+        
+        decimal_frac : float = float(chooseNumber())
+        max_frac : int = int(input("    > Digite a precisão da parte fracionária: "))
+        print (conversionComplete(), decfrac_to_bin(decimal_frac, max_frac))
         retry()
 
     elif (option == 9):
         clearTerminal()
         print("9. Binário fracionário para Decimal fracionário")
 
-        bin = str(chooseNumber())
-        print("\nExercício ainda não feito!")
+        binary = str(chooseNumber())
+        print(conversionComplete(), binfrac_to_dec(binary))
         retry()
 
     elif (option == 10):
@@ -168,6 +169,40 @@ def option1() -> None:
         sleep(timer)
         clearTerminal()
         option1()
+
+    return None
+
+def option2() -> None:
+    clearTerminal()
+    printLine()
+
+    entry_text : str = '''
+> Seja bem vindo(a) ao menu de testes automatizados!
+> Por favor, escolha uma opção:
+    
+    0. Voltar ao menu principal
+    1. Testes automatizados
+    '''    
+    
+    print(entry_text)
+
+    option : int = int(input("Digite sua escolha: "))
+
+    if (option == 0):
+        print("\n> Voltando ao menu principal...")
+        sleep(timer)
+        clearTerminal()
+        interface()
+
+    elif (option == 1):
+        clearTerminal()
+        printLine()
+        print("    1. Testes automatizados")
+        printLine()
+
+        main_test()
+
+        printLine()
 
     return None
 
@@ -191,22 +226,7 @@ def interface () -> None:
         option1()
 
     elif (option == 2):
-        clearTerminal()
-        printLine()
-        print("Testes ainda incompletos!\nGostaria de retornar ao menu principal?")
-
-        option = str(input("\nEscolha (S/N): "))
-        option = option.upper()
-
-        if (option == 'S'):
-            sleep(timer)
-            clearTerminal()
-            interface()
-
-        else:
-            print("> Saindo...")
-            sleep(timer)
-            exit()
+        option2()
 
     elif (option == 3):
         print("> Saindo...")

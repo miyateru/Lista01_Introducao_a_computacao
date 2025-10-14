@@ -8,7 +8,6 @@ from exercicio04 import oct_to_dec
 from exercicio05 import dec_to_hex
 from exercicio06 import hex_to_dec
 from exercicio07 import convert_base
-from interface import clearTerminal, printLine
 
 def test(test_input, expect_output) -> None:
     try:
@@ -83,11 +82,7 @@ def test_exercicio09() -> None:
 def test_exercicio10() -> None:
     return None
 
-def main() -> None:
-    clearTerminal()
-    printLine()
-    print("    Testes automátizados")
-    printLine()
+def main_test() -> None:
     test_exercicio01()
     test_exercicio02()
     test_exercicio03()
@@ -99,9 +94,8 @@ def main() -> None:
     test_exercicio09()
     test_exercicio10()
     print()
-    printLine()
 
     return None
 
 if __name__ == "__main__":
-    main()
+    main_test()
