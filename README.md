@@ -17,18 +17,6 @@
 
 ****
 
-# TODO
-
-- [x] Adicionar todos os testes
-- [x] Completar o README
-    - [x] Adicionar como executar os arquivos
-- [x] Atualizar interface
-    - [x] Tratar entradas inválidas
-- [ ] Gravar vídeo funcionalidade
-- [x] Adicionar como executar exercicios indidualemente
-- [x] Adicionar como executar exercicios pela interface
-- [x] Terminar exercicio 10 + tratar entradas invalidas exercicio 10
-
 ## Uso
 
 Testado para funcionar em Windows 11 e Linux (Ubuntu e Linux Mint). 
