@@ -65,6 +65,8 @@ def _main () -> None:
         print("Símbolo desconhecido ou não suportado usado.")
     except FloatingPointError:
         print("O maximo de numeros deve ser um número inteiro.")
+    except KeyboardInterrupt:
+        exit()
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
 

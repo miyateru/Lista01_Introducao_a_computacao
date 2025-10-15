@@ -78,6 +78,8 @@ def _main() -> None:
         print("Valor não é um numero válido.")
     except SyntaxError:
         print("Argumentos de tipo incorreto.")
+    except KeyboardInterrupt:
+        exit()
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
     return None

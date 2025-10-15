@@ -10,20 +10,16 @@ from exercicio06 import hex_to_dec
 from exercicio07 import convert_base
 from exercicio08 import decfrac_to_bin
 from exercicio09 import binfrac_to_dec
+from exercicio10 import to_fixed_width_bin, ipv4_to_bin, bin_to_ipv4
 from automated_tests import main_test
 import errors
 from os import system
 from time import sleep
 
-timer : int = 1
+timer : int = 2
 
-def chooseNumber() -> int:
-    number : int = int(input("    > Número a ser convertido: "))
-    return number
-
-def conversionComplete() -> str:
-    text : str = "    > Número convertido:"
-    return text
+choose : str = "> Número a ser convertido: "
+conversionComplete : str = "> Número convertido:"
 
 def retry() -> None:
     sleep(timer)
@@ -37,20 +33,33 @@ def retry() -> None:
         print ("> Retornando ao menu de opções...")
         clearTerminal()
         option1()
-
     else:
         print ("> Retornando ao menu principal...")
         clearTerminal()
         interface()
+        
+    return None
 
 def clearTerminal() -> None:
     if (platform.system() == "Windows"):
         system("cls")
     else:
         system("clear")
+        
+    return None
 
 def printLine() -> None:
     print("*", "-" * 100, "*")
+    
+    return None
+
+def backToInterface() -> None:
+    print("\n> Voltando ao menu principal...")
+    sleep(timer)
+    clearTerminal()
+    interface()
+    
+    return None
 
 def option1() -> None:
     clearTerminal()
@@ -75,81 +84,253 @@ def option1() -> None:
 
     print(entry_text)
 
-    option = int(input("Digite sua escolha: "))
+    option : int = int()
+    try:
+        option = int(input("Digite sua escolha: "))
+        if (option < 0) or (option > 10):
+            raise(ValueError)
+    except ValueError:
+        print("Escolha inválida!", end="")
+        backToInterface()
+    except KeyboardInterrupt:
+        exit()
+    except Exception as error:
+        print(f"Erro não previsto: {error}, Tipo: {type(error)}")
 
     if (option == 0):
-        print("\n> Voltando ao menu principal...")
-        sleep(timer)
-        clearTerminal()
-        interface()
-
+        backToInterface()
+        
     elif (option == 1):
         clearTerminal()
         print("1. Decimal para Binário \n")
         
-        decimal : int = chooseNumber()
-        print(conversionComplete(), dec_to_bin(decimal))
-        retry()
+        try:
+            decimal = input(choose)
+            errors.in_base(decimal)
+            errors.signal_placement(decimal)
+            decimal = int(decimal)
+            print(conversionComplete, dec_to_bin(decimal))
+            retry()
+        except errors.OutOfBase:
+            print("Entrada não é um numero decimal.")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta.")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except ValueError:
+            print("Não é um número válido\nVoltando ao menu principal...")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
 
     elif (option == 2):
         clearTerminal()
         print("2. Binário para decimal \n")
         
-        binary : str = str(chooseNumber())
-        print(conversionComplete(), bin_to_dec(binary))
-        retry()
+        try:
+            binary : str = input(choose)
+            errors.in_base(binary, 2)
+            errors.signal_placement(binary)
+            print(conversionComplete, bin_to_dec(binary))
+            retry()
+        except errors.OutOfBase:
+            print("Entrada não é um numero binário.")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta.")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
     
     elif (option == 3):
         clearTerminal()
         print("3. Decimal para octal \n")
         
-        decimal = chooseNumber()
-        print(conversionComplete(), dec_to_oct(decimal))
-        retry()
+        try:
+            decimal = input(choose)
+            errors.in_base(decimal)
+            errors.signal_placement(decimal)
+            decimal = int(decimal)
+            print(conversionComplete, dec_to_oct(decimal))
+            retry()
+        except errors.OutOfBase:
+            print("Entrada não é um numero decimal.")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta.")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
 
     elif (option == 4):
         clearTerminal()
         print("4. Octal para decimal \n")
         
-        octal : str = str(chooseNumber())
-        print(conversionComplete(), oct_to_dec(octal))
-        retry()
+        try:
+            octal = input(choose)
+            errors.in_base(octal, 8)
+            errors.signal_placement(octal)
+            print(conversionComplete, oct_to_dec(octal))
+            retry()
+        except errors.OutOfBase:
+            print("Entrada não é um numero octal.")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta.")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
 
     elif (option == 5):
         clearTerminal()
         print("5. Decimal para hexadecimal \n")
         
-        decimal = chooseNumber()
-        print(conversionComplete(), dec_to_hex(decimal))
-        retry()
+        try: 
+            decimal = input(choose)
+            errors.in_base(decimal)
+            errors.signal_placement(decimal)
+            decimal = int(decimal)
+            print(conversionComplete, dec_to_hex(decimal))
+            retry()
+        except errors.OutOfBase:
+            print("Entrada não é um numero decimal.")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta.")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
 
     elif (option == 6):
         clearTerminal()
         print("6. Hexadecimal para decimal \n")
         
-        hexadecimal : str = str(chooseNumber())
-        print(conversionComplete(), hex_to_dec(hexadecimal))
-        retry()
+        try: 
+            hexadecimal = input(choose)
+            errors.in_base(hexadecimal, 16)
+            errors.signal_placement(hexadecimal)
+            print(conversionComplete, hex_to_dec(hexadecimal))
+            retry()
+        except errors.OutOfBase:
+            print("Entrada não é um numero hexadecimal.")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta.")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
 
     elif (option == 7):
         clearTerminal()
         print("7. Conversão genérica de bases \n")
         
-        number : str = str(chooseNumber())
-        base_to : int = int(input("    > Digite a base original do número: "))
-        base_from : int = int(input("    > Digite a base que o número será convertido: "))
-        print(conversionComplete(), convert_base(number, base_to, base_from))
-        retry()
+        try:
+            number = input(choose)
+            
+            base_to = (input("    > Digite a base original do número: "))
+            if (str(base_to).isnumeric() == False):
+                raise errors.NotABase
+            base_to = int(base_to)
+            
+            errors.in_base(number, base_to)
+            errors.signal_placement(number)
+            
+            base_from : int = int(input("    > Digite a base que o número será convertido: "))
+            if (str(base_from).isnumeric() == False):
+                raise errors.NotABase
+            base_to = int(base_from)
+            
+            print(conversionComplete, convert_base(number, base_to, base_from))
+            retry()
+        except errors.OutOfBase:
+            print("O numero não esta na base de entrada informada.")
+        except errors.NotABase:
+            print("A base deve ser um número")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except ValueError:
+            print("Base inválida.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
 
     elif (option == 8):
         clearTerminal()
         print("8. Decimal fracionário para binário fracionário")
         
-        decimal_frac : float = float(chooseNumber())
-        max_frac : int = int(input("    > Digite a precisão da parte fracionária: "))
-        print (conversionComplete(), decfrac_to_bin(decimal_frac, max_frac))
-        retry()
-
+        try:
+            decimal = input(choose)
+            errors.in_base(decimal, 10, True)
+            errors.signal_placement(decimal)
+            decimal_frac = float(decimal)
+            
+            max_frac = input("> Digite a precisão da parte fracionária: ")
+            if (str(max_frac).isnumeric() == False):
+                raise FloatingPointError("O maximo de numeros deve ser um número inteiro.")
+            max_frac = int(max_frac)
+            max_frac = int(max_frac)
+            
+            print(conversionComplete, decfrac_to_bin(decimal_frac, max_frac))
+            retry()
+        except errors.OutOfBase:
+            print("Entrada não é um numero decimal.")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta.")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except FloatingPointError:
+            print("O maximo de numeros deve ser um número inteiro.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro não previsto: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
+        
     elif (option == 9):
         clearTerminal()
         print("9. Binário fracionário para Decimal fracionário")
@@ -164,12 +345,6 @@ def option1() -> None:
 
         print("\nainda nao ta feitooo!!!!")
         retry()
-
-    else:
-        print("Entrada inválida!\n Retornando...")
-        sleep(timer)
-        clearTerminal()
-        option1()
 
     return None
 
@@ -187,22 +362,32 @@ def option2() -> None:
     
     print(entry_text)
 
-    option : int = int(input("Digite sua escolha: "))
-
+    option : int = int()
+    try:
+        option : int = int(input("Digite sua escolha: "))
+        if (option < 0) or (option > 1):
+            raise(ValueError)
+    except ValueError:
+        print("Escolha inválida!\nVoltando ao menu principal...")
+        sleep(timer)
+        clearTerminal()
+        interface()
+    except KeyboardInterrupt:
+        exit()
+    except Exception as error:
+        print(f"Erro não previsto: {error}, Tipo: {type(error)}")
+        
     if (option == 0):
         print("\n> Voltando ao menu principal...")
         sleep(timer)
         clearTerminal()
         interface()
-
     elif (option == 1):
         clearTerminal()
         printLine()
         print("    1. Testes automatizados")
         printLine()
-
         main_test()
-
         printLine()
 
     return None
@@ -221,25 +406,29 @@ def interface () -> None:
 
     print(main_text)
 
-    option : int = int(input("Digite sua escolha: "))
+    option : int = int()
+    try:
+        option = int(input("Digite sua escolha: "))
+        if (option < 1) or (option > 3):
+            raise(ValueError)
+    except ValueError:
+        print("Escolha inválida!\nTerminando programa...")
+        sleep(timer)
+        clearTerminal()
+    except KeyboardInterrupt:
+        exit()
+    except Exception as error:
+        print(f"Erro não previsto: {error}, Tipo: {type(error)}")
 
     if (option == 1):
         option1()
-
     elif (option == 2):
         option2()
-
     elif (option == 3):
         print("> Saindo...")
         sleep(timer)
         exit()
     
-    else:
-        print("Escolha inválida!\nRetornando ao menu principal...")
-        sleep(timer)
-        clearTerminal()
-        interface()
-
     return None
 
 if __name__ == "__main__":

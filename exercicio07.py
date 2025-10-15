@@ -65,6 +65,8 @@ def _main () -> None:
         print("Símbolo desconhecido ou não suportado usado.")
     except ValueError:
         print("Base inválida.")
+    except KeyboardInterrupt:
+        exit()
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
 
