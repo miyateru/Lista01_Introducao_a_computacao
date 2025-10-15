@@ -20,12 +20,12 @@ def binfrac_to_dec(b : str) -> float:
     if (len(int_part) == 0) or (len(float_part) == 0):
         raise FloatingPointError
     
-    # Get's integer decimal part via sucessive multiplication
+    # Gets integer decimal part via sucessive multiplication
     int_part = int_part[::-1]
     for i in range(len(int_part)):
         result += int(int_part[i]) * (2 ** i)
         
-    # Get's fractional part via sucessive multiplication
+    # Gets fractional part via sucessive multiplication
     # By negative potencies of two
     for i in range(1, len(float_part) + 1):
         result += int(float_part[i - 1]) * (1/2 ** i)
