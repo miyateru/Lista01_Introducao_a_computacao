@@ -134,7 +134,7 @@ def test_exercicio08() -> None:
     tests_ex_08 : dict[float, str] = {
         10.625 : "1010.101",
         0.1 : "0.0001100110",
-        0 : "0"
+        0 : "0.0"
     }
 
     frac_bits_ex_08 : list[int] = [8, 10, 1]
