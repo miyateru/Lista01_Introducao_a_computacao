@@ -31,7 +31,7 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
     if (num_decimal == 0):
         result += str(0)
 
-    #Converter de decimal para a base escolhida (base_to)
+    # Converts from decimal to base_to
     while num_decimal > 0:
         num_base : int =  num_decimal % base_to
         num_decimal //= base_to

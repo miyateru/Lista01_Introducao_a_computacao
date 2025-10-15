@@ -32,21 +32,25 @@ def decfrac_to_bin(num : float, max_frac_bits : int = 16) -> str:
         result_int += '-'
 
     #Handles the float part of the number
-    num_frac : str = str(num % 1)
+    num_frac : float = num % 1
     result_frac : str = str()
-
-    ## Removes the trailing 0 and dot
-    num_frac = num_frac[2::]
-    frac_as_num : int = int(num_frac)
     
-    if (frac_as_num == 0):
+    if (num_frac == 0.0):
         result_frac += str(0)
     
-    while ((frac_as_num > 0) and (len(result_frac) < max_frac_bits)):
-        result_frac += str(frac_as_num % 2)
-        frac_as_num //= 2
+    while(max_frac_bits) and (num_frac != 0.0):
+        num_frac *= 2
+        frac_part = int(num_frac)
+        
+        if (frac_part == 1):
+            num_frac -= frac_part
+            result_frac += str(1)
+        else:
+            result_frac += str(0)
+            
+        max_frac_bits -= 1
 
-    return f"{result_int[::-1]}.{result_frac[::-1]}"
+    return f"{result_int[::-1]}.{result_frac}"
 
 def _main () -> None:
     try:
