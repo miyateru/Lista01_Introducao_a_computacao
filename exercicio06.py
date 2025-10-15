@@ -1,47 +1,50 @@
-import errors_check
+import errors
 
-def hex_to_dec(hexadecimal : str) -> int:
-    char_table : dict[str, int] = {
-        '0' : 0, '1' : 1, '2' : 2, '3' : 3, '4' : 4,
-        '5' : 5, '6' : 6, '7' : 7, '8' : 8, '9' : 9,
-        '-' : None,
-    }
-    entry_charset : dict[int, str] = {
-        0 : '0', 1 : '1', 2 : '2', 3 : '3', 4 : '4',
-        5 : '5', 6 : '6', 7 : '7', 8 : '8', 9 : '9',
-        10 : 'A', 11 : 'B', 12 : 'C', 13 : 'D', 14 : 'E',
-        15 : 'F',
-    }
-    decimal : int = 0
+def hex_to_int(h : str) -> int:
+    if (ord(h) >= ord('A') and ord(h) <= ord('F')):
+        return (ord(h) - ord('A')) + 10
+    return ord(h) - ord('0') 
+
+def hex_to_dec(h : str) -> int:
+    """
+    Converts a hexadecimal number to a decimal number.
+    """
+    h = h.upper()
+    errors.in_base(h, 16)
+    errors.signal_placement(h)
+
     negative : bool = False
-
-    hexadecimal = hexadecimal.upper()
-
-    errors_check.check_charset(entry_charset, hexadecimal)
-    errors_check.check_signal_placement(hexadecimal)
-
-    if ('-' in hexadecimal):
+    if ('-' in h):
         negative = True
-        hexadecimal = hexadecimal.replace("-", "")
-
-    hexadecimal = hexadecimal[::-1]
+        h = h.replace("-", "")
     
-    for N in range(len(hexadecimal)):
-        decimal += char_table[hexadecimal[N]] * (16 ** N)
+    # Get's hexadecimal via sucessive multiplication
+    decimal : int = int()
+    h = h[::-1]
+    for i in range(len(h)):
+        decimal += hex_to_int(h[i]) * (16 ** i)
 
-    if negative:
+    if (negative):
         decimal *= -1
 
     return decimal
 
-def main () -> None:
+def _main () -> None:
     try:
-        num = input('> ')
+        num = input("> ")
         print(hex_to_dec(num))
+    except errors.OutOfBase:
+        print("Entrada não é um numero hexadecimal.")
+    except errors.IncorrectSignalPlacement:
+        print("Sinal negativo em posição incorreta.")
+    except errors.IncorrectWhitespace:
+        print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+    except errors.IncorrectSymbol:
+        print("Símbolo desconhecido ou não suportado usado.")
     except Exception as error:
-        print(f'Uncaught error: {error}, {type(error)}')
-
+        print(f"Erro não previsto: {error}, Tipo: {type(error)}")
+        
     return None
 
 if __name__ == "__main__":
-    main()
+    _main()
