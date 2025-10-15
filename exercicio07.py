@@ -6,6 +6,10 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
     """
     errors.in_base(num, base_from)
     errors.signal_placement(num)
+    if str(base_to).isnumeric() == False:
+        raise errors.NotABase("A base deve ser um número.")
+    base = int(base_to)
+    
     num = num.upper()
 
     negative : bool = False
@@ -47,6 +51,8 @@ def _main () -> None:
         print(convert_base(num, base_to, base_from)) # type: ignore
     except errors.OutOfBase:
         print("O numero não esta na base de entrada informada.")
+    except errors.NotABase:
+        print("A base deve ser um número")
     except errors.IncorrectSignalPlacement:
         print("Sinal negativo em posição incorreta")
     except errors.IncorrectWhitespace:

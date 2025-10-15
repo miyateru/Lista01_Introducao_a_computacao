@@ -15,6 +15,11 @@ class IncorrectWhitespace(SyntaxError):
     """
     pass
 
+class NotABase(ValueError):
+    """
+    Not a valid base for calculations.
+    """
+
 class OutOfBase(ValueError):
     """
     Not in the correct number base.
@@ -24,11 +29,14 @@ class OutOfBase(ValueError):
 def in_base(num : str, base : int = 10, frac : bool = False) -> None:
     """    
     Check if a given number is in the given base.\n
-    Returns None if number is in base. Otherwise raises an Exception.\n
+    Returns None if number is in the given base. Otherwise raises an Exception.\n
     For any base greater than 10 utilizes letters from A up to Z (min base: 0, max base: 36).\n
     Ignores the negative or positive symbol. Ignores dots if frac flag (the third argument) is true.\n
     Is 0 indexed.\n
     """
+    if str(base).isnumeric() == False:
+        raise NotABase("A base deve ser um número.")
+    base = int(base)
     if ((base < 0) or (base > 36)):
         raise SyntaxError("Base min: 0, Base max: 36")
     
@@ -69,11 +77,13 @@ def signal_placement(vector : str) -> None:
 def main():
     try:
         num : str = input("Número: ")
-        base_to : int = int(input("Base: "))
-        in_base(num, base_to)
+        base_to = (input("Base: "))
+        in_base(num, base_to) # type: ignore
         signal_placement(num)
     except OutOfBase:
         print("O numero não esta na base de entrada informada.")
+    except NotABase:
+        print("A base deve ser um número")
     except IncorrectSignalPlacement:
         print("Sinal negativo em posição incorreta")
     except IncorrectWhitespace:
