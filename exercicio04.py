@@ -35,6 +35,8 @@ def _main () -> None:
         print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
     except errors.IncorrectSymbol:
         print("Símbolo desconhecido ou não suportado usado.")
+    except KeyboardInterrupt:
+        exit()
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
         

@@ -17,7 +17,7 @@ def binfrac_to_dec(b : str) -> float:
     float_part : str = str(b[index_separator + 1::])
     result : float = float()
     
-    if (len(int_part) == 0) or (len(float_part) == 0):
+    if (len(int_part) == 0) and (len(float_part) == 0):
         raise FloatingPointError
     
     # Gets integer decimal part via sucessive multiplication
@@ -49,6 +49,8 @@ def _main () -> None:
         print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
     except errors.IncorrectSymbol:
         print("Símbolo desconhecido ou não suportado usado.")
+    except KeyboardInterrupt:
+        exit()
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
 

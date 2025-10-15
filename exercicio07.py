@@ -27,8 +27,11 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
         else:
             num_decimal += int(num[i]) * (base_from ** i)
 
-    #Converter de decimal para a base escolhida (base_to)
     result : str = str()
+    if (num_decimal == 0):
+        result += str(0)
+
+    #Converter de decimal para a base escolhida (base_to)
     while num_decimal > 0:
         num_base : int =  num_decimal % base_to
         num_decimal //= base_to
@@ -62,6 +65,8 @@ def _main () -> None:
         print("Símbolo desconhecido ou não suportado usado.")
     except ValueError:
         print("Base inválida.")
+    except KeyboardInterrupt:
+        exit()
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
 

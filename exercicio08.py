@@ -14,13 +14,16 @@ def decfrac_to_bin(num : float, max_frac_bits : int = 16) -> str:
     
     #Handles the integer part of the number
     num_int : int = trunc(num)
+    result_int : str = str()   
 
     negative : bool = False
+    if (num_int == 0):
+        result_int += str(0)
+    
     if (num_int < 0):
         negative = True
         num_int = abs(num_int)
         
-    result_int : str = str()    
     while (num_int > 0):
         result_int += str(num_int % 2)
         num_int //= 2
@@ -35,6 +38,10 @@ def decfrac_to_bin(num : float, max_frac_bits : int = 16) -> str:
     ## Removes the trailing 0 and dot
     num_frac = num_frac[2::]
     frac_as_num : int = int(num_frac)
+    
+    if (frac_as_num == 0):
+        result_frac += str(0)
+    
     while ((frac_as_num > 0) and (len(result_frac) < max_frac_bits)):
         result_frac += str(frac_as_num % 2)
         frac_as_num //= 2
@@ -58,6 +65,8 @@ def _main () -> None:
         print("Símbolo desconhecido ou não suportado usado.")
     except FloatingPointError:
         print("O maximo de numeros deve ser um número inteiro.")
+    except KeyboardInterrupt:
+        exit()
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
 
