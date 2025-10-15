@@ -11,6 +11,7 @@ from exercicio07 import convert_base
 from exercicio08 import decfrac_to_bin
 from exercicio09 import binfrac_to_dec
 from automated_tests import main_test
+import errors
 from os import system
 from time import sleep
 
