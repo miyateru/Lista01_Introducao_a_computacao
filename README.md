@@ -4,13 +4,35 @@
     > Arthur Fazzio Mendes
     > Lívia Rezende Masson
 
+**Professor**
+    > Rafael Serapilha Durelli.
+
 **Semestre:** 2025/2
 
-**Turma e Disciplina:** Turma 10A, de Bacharelado em Ciência da Computação.
+**Turma e Disciplina:** Turma 10A, de Bacharelado em Ciência da Computação 2025/02, pela UFLA.
 
 **Versão utilizada do Python:** 3.13.7
 
 ****
+
+# TODO
+
+- [] Adicionar todos os testes
+- [] Completar o README
+    - [] Adicionar como executar os arquivos
+- [] Atualizar interface
+    - [] Tratar entradas invalidas
+- [] Gravar vídeo funcionalidade
+- [] Adicionar como executar exercicios indidualemente
+- [] Adicionar como executar exercicios pela interface
+- [] Terminar exercicio 10 + tratar entradas invalidas exercicio 10
+
+## Uso
+
+Testado para funcionar em Windows 11 e Linux (Ubuntu e Linux Mint). 
+Necessita de python 3.13.7 instalado no sistema, e so utiliza as bibliotecas padrão de python. 
+Caso python nessa versão não esteja instalado no seu sistema verifique como fazer a instalação na [pagina de download do python.org](https://www.python.org/downloads/).
+
 ## Especificações dos arquivos:
 
 - Cada exercício proposto na Lista 01 está em seu respectivo arquivo *.py*, designado com a seguinte nomenclatura: "exercicio[número do exercício].py".
