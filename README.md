@@ -20,8 +20,8 @@
 # TODO
 
 - [x] Adicionar todos os testes
-- [ ] Completar o README
-    - [ ] Adicionar como executar os arquivos
+- [x] Completar o README
+    - [x] Adicionar como executar os arquivos
 - [x] Atualizar interface
     - [x] Tratar entradas inválidas
 - [ ] Gravar vídeo funcionalidade
@@ -31,14 +31,14 @@
 
 ## Uso
 
-    Testado para funcionar em Windows 11 e Linux (Ubuntu e Linux Mint). 
+Testado para funcionar em Windows 11 e Linux (Ubuntu e Linux Mint). 
 Necessita de Python 3.13.7 instalado no sistema, e são utilizadas apenas as bibliotecas padrão de Python.
 
-    Caso Python nessa versão não esteja instalado no sistema, verifique como fazer a instalação na [página de download do Python](https://www.python.org/downloads/).
+Caso Python nessa versão não esteja instalado no sistema, verifique como fazer a instalação na [página de download do Python](https://www.python.org/downloads/).
 
 ## Especificações dos arquivos:
 
-- Cada exercício proposto na Lista 01 está em seu respectivo arquivo *.py*, designado com a seguinte nomenclatura: "exercicio[número do exercício].py".
+- Cada exercício proposto na Lista 01 está em seu respectivo arquivo *.py*, designado com a seguinte nomenclatura: *"exercicio[número do exercício].py"*.
 
 - O arquivo *"automated_tests.py"* designa os testes automatizados para cada exercício. Pode ser tanto visto pela interface quanto pelo próprio arquivo, utilizando main_test().
 
@@ -54,6 +54,6 @@ Necessita de Python 3.13.7 instalado no sistema, e são utilizadas apenas as bib
 - Caso queira executar os exercícios individuais (sem a ajuda da interface), ou a interface, ou ainda os testes automatizados pelo terminal, basta seguir esses passos:
     * Entre na pasta do projeto e copie o seu endereço;
     * Em uma aba de terminal, digite o comando "cd \endereço\da\lista\01", e aperte Enter;
-    * Agora, digite *"py"*/*"python"*/*"python3"* na linha de comando (dependendo do sistema operacional utilizado), e o nome do exercício, junto com a terminação ".py".
+    * Agora, digite *py*/*python*/*python3* (dependendo do sistema operacional utilizado) na linha de comando e o nome do exercício, junto com a terminação ".py".
 
-- Exemplo: 'py exercicio01.py'
+- ***Exemplo*** 'py exercicio01.py' (Neste caso, o comando é mais utilizado em Windows.)
