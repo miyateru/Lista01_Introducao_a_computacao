@@ -17,7 +17,7 @@ def binfrac_to_dec(b : str) -> float:
     float_part : str = str(b[index_separator + 1::])
     result : float = float()
     
-    if (len(int_part) == 0) or (len(float_part) == 0):
+    if (len(int_part) == 0) and (len(float_part) == 0):
         raise FloatingPointError
     
     # Get's integer decimal part via sucessive multiplication

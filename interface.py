@@ -262,7 +262,7 @@ def option1() -> None:
         try:
             number = input(choose)
             
-            base_to = (input("    > Digite a base original do número: "))
+            base_to = (input("> Digite a base original do número: "))
             if (str(base_to).isnumeric() == False):
                 raise errors.NotABase
             base_to = int(base_to)
@@ -270,7 +270,7 @@ def option1() -> None:
             errors.in_base(number, base_to)
             errors.signal_placement(number)
             
-            base_from : int = int(input("    > Digite a base que o número será convertido: "))
+            base_from : int = int(input("> Digite a base que o número será convertido: "))
             if (str(base_from).isnumeric() == False):
                 raise errors.NotABase
             base_to = int(base_from)
@@ -335,16 +335,60 @@ def option1() -> None:
         clearTerminal()
         print("9. Binário fracionário para Decimal fracionário")
 
-        binary = str(chooseNumber())
-        print(conversionComplete(), binfrac_to_dec(binary))
-        retry()
+        try:
+            binary = input(choose)
+            errors.in_base(binary, 2, True)
+            errors.signal_placement(binary)
+            print(conversionComplete, binfrac_to_dec(binary))
+            retry()
+        except errors.OutOfBase:
+            print("Entrada não é um numero binário.")
+        except errors.IncorrectSignalPlacement:
+            print("Sinal negativo em posição incorreta.")
+        except FloatingPointError:
+            print("Número não é flutuante.")
+        except errors.IncorrectWhitespace:
+            print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
+        except errors.IncorrectSymbol:
+            print("Símbolo desconhecido ou não suportado usado.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro não previsto: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
 
     elif (option == 10):
         clearTerminal()
         print("10. Formatação e largura fixa")
 
-        print("\nainda nao ta feitooo!!!!")
-        retry()
+        try:
+            print("> Qual operação?\n")
+            print("1. to_fixed_width_bin")
+            print("2. ipv4_to_bin")
+            print("3. bin_to_ipv4")
+            op : int = int(input("Operação: "))
+            if (op == 1):
+                num_fixed = (input("Num:  "))
+                bits  = (input("Bits: "))
+                print(to_fixed_width_bin(num_fixed, bits)) # type: ignore
+            elif (op == 2):
+                num_ipv4 = input("Ipv4: ")
+                print(ipv4_to_bin(num_ipv4))
+            elif (op == 3):
+                num_bin : str = input("Binary Ipv4: ")
+                print(bin_to_ipv4(num_bin))
+            retry()
+        except ValueError:
+            print("Valor não é um numero válido.")
+        except SyntaxError:
+            print("Argumentos de tipo incorreto.")
+        except KeyboardInterrupt:
+            print("Conversão interrompida.")
+        except Exception as error:
+            print(f"Erro não previsto: {error}, Tipo: {type(error)}")
+        finally:
+            backToInterface()
 
     return None
 
@@ -415,6 +459,7 @@ def interface () -> None:
         print("Escolha inválida!\nTerminando programa...")
         sleep(timer)
         clearTerminal()
+        exit()
     except KeyboardInterrupt:
         exit()
     except Exception as error:
