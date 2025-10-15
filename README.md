@@ -17,15 +17,15 @@
 
 # TODO
 
-- [] Adicionar todos os testes
-- [] Completar o README
-    - [] Adicionar como executar os arquivos
-- [] Atualizar interface
-    - [] Tratar entradas invalidas
-- [] Gravar vídeo funcionalidade
-- [] Adicionar como executar exercicios indidualemente
-- [] Adicionar como executar exercicios pela interface
-- [] Terminar exercicio 10 + tratar entradas invalidas exercicio 10
+- [ ] Adicionar todos os testes
+- [ ] Completar o README
+    - [ ] Adicionar como executar os arquivos
+- [ ] Atualizar interface
+    - [ ] Tratar entradas invalidas
+- [ ] Gravar vídeo funcionalidade
+- [ ] Adicionar como executar exercicios indidualemente
+- [ ] Adicionar como executar exercicios pela interface
+- [ ] Terminar exercicio 10 + tratar entradas invalidas exercicio 10
 
 ## Uso
 
