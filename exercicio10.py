@@ -27,7 +27,12 @@ def ipv4_to_bin(ip : str) -> str:
 def to_fixed_width_bin(n : int, bits : int) -> str:
     errors.in_base(str(n))
     errors.signal_placement(str(n))
+    if (str(bits).isnumeric()) == False:
+        raise SyntaxError("A base deve ser um número.")
+    bits = int(bits)
+    
     n = int(n)
+    bits = int(bits)
     
     binary : str = dec_to_bin(n)
     result : str = str()
@@ -60,9 +65,9 @@ def _main() -> None:
         print("3. bin_to_ipv4")
         op : int = int(input("Operação: "))
         if (op == 1):
-            num_fixed : int = int(input("Num:  "))
-            bits : int = int(input("Bits: "))
-            print(to_fixed_width_bin(num_fixed, bits))
+            num_fixed = (input("Num:  "))
+            bits  = (input("Bits: "))
+            print(to_fixed_width_bin(num_fixed, bits)) # type: ignore
         elif (op == 2):
             num_ipv4 = input("Ipv4: ")
             print(ipv4_to_bin(num_ipv4))
@@ -71,6 +76,8 @@ def _main() -> None:
             print(bin_to_ipv4(num_bin))
     except ValueError:
         print("Valor não é um numero válido.")
+    except SyntaxError:
+        print("Argumentos de tipo incorreto.")
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
     return None
