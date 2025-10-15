@@ -8,7 +8,8 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
     errors.signal_placement(num)
     if str(base_to).isnumeric() == False:
         raise errors.NotABase("A base deve ser um número.")
-    base = int(base_to)
+    base_to = int(base_to)
+    base_from = int(base_from)
     
     num = num.upper()
 
@@ -32,8 +33,8 @@ def convert_base(num : str, base_from : int = 10, base_to : int = 10) -> str:
         num_base : int =  num_decimal % base_to
         num_decimal //= base_to
 
-        if num_base > 10:
-            result += str(int(ord('A') + num_decimal - 10))
+        if num_base >= 10:
+            result += chr(ord('A') + (num_base - 10))
         else:
             result += str(num_base)
 

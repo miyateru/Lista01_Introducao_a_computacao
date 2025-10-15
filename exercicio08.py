@@ -5,6 +5,9 @@ def decfrac_to_bin(num : float, max_frac_bits : int = 16) -> str:
     """
     Converts a fractional decimal number to a fractional binary number.
     """
+    if (str(max_frac_bits).isnumeric()) == False:
+        raise FloatingPointError("O maximo de numeros deve ser um número inteiro.")
+    max_frac_bits = int(max_frac_bits)
     errors.in_base(str(num), 10, True)
     errors.signal_placement(str(num))
     num = float(num)
@@ -40,10 +43,11 @@ def decfrac_to_bin(num : float, max_frac_bits : int = 16) -> str:
 
 def _main () -> None:
     try:
-        num : float = float(input("Número a ser convertido: "))
-        max_frac : int = int(input("Precisão da parte fracionária: "))
+        num = (input("Número a ser convertido: "))
+        max_frac = (input("Precisão da parte fracionária: "))
 
-        print(decfrac_to_bin(num, max_frac))
+        # Considering non-sanitized input
+        print(decfrac_to_bin(num, max_frac)) # type: ignore
     except errors.OutOfBase:
         print("Entrada não é um numero decimal.")
     except errors.IncorrectSignalPlacement:
@@ -52,6 +56,8 @@ def _main () -> None:
         print("Uso incorreto de tabulação e/ou espaço em branco dentro do número.")
     except errors.IncorrectSymbol:
         print("Símbolo desconhecido ou não suportado usado.")
+    except FloatingPointError:
+        print("O maximo de numeros deve ser um número inteiro.")
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
 

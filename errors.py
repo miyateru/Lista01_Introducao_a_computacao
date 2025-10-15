@@ -34,7 +34,7 @@ def in_base(num : str, base : int = 10, frac : bool = False) -> None:
     Ignores the negative or positive symbol. Ignores dots if frac flag (the third argument) is true.\n
     Is 0 indexed.\n
     """
-    if str(base).isnumeric() == False:
+    if (str(base).isnumeric()) == False:
         raise NotABase("A base deve ser um número.")
     base = int(base)
     if ((base < 0) or (base > 36)):

@@ -1,16 +1,24 @@
 import errors
 from exercicio01 import dec_to_bin
+from exercicio02 import bin_to_dec
 
 def bin_to_ipv4(bits : str) -> str:
-    return ""
+    blocks : list[str] = bits.split('.')
+    result : str = str()
+    
+    for i in range(len(blocks)):
+        result += str(bin_to_dec(blocks[i]))
+        if (i < len(blocks) - 1):
+            result += '.'
+            
+    return result
 
 def ipv4_to_bin(ip : str) -> str:
     blocks : list[str] = ip.split('.')
     result : str = str()
     
     for i in range(len(blocks)):
-        block_bin : int =  int(dec_to_bin(int(blocks[i])))
-        result += to_fixed_width_bin(block_bin, 8)
+        result += to_fixed_width_bin(int(blocks[i]), 8)
         if (i < len(blocks) - 1):
             result += '.'
             
@@ -46,14 +54,26 @@ def to_fixed_width_bin(n : int, bits : int) -> str:
 
 def _main() -> None:
     try:
-        # num = int(input("Num:  "))
-        # bits = int(input("Bits: "))
-        # print(to_fixed_width_bin(num, bits))
-        num = input("Ipv4: ")
-        print(ipv4_to_bin(num))
+        print("> Qual operação?\n")
+        print("1. to_fixed_width_bin")
+        print("2. ipv4_to_bin")
+        print("3. bin_to_ipv4")
+        op : int = int(input("Operação: "))
+        if (op == 1):
+            num_fixed : int = int(input("Num:  "))
+            bits : int = int(input("Bits: "))
+            print(to_fixed_width_bin(num_fixed, bits))
+        elif (op == 2):
+            num_ipv4 = input("Ipv4: ")
+            print(ipv4_to_bin(num_ipv4))
+        elif (op == 3):
+            num_bin : str = input("Binary Ipv4: ")
+            print(bin_to_ipv4(num_bin))
+    except ValueError:
+        print("Valor não é um numero válido.")
     except Exception as error:
         print(f"Erro não previsto: {error}, Tipo: {type(error)}")
     return None
-    
+
 if __name__ == "__main__":
     _main()
