@@ -44,4 +44,4 @@ Caso Python nessa versão não esteja instalado no sistema, verifique como fazer
     * Em uma aba de terminal, digite o comando "cd \endereço\da\lista\01", e aperte Enter;
     * Agora, digite *py*/*python*/*python3* (dependendo do sistema operacional utilizado) na linha de comando e o nome do exercício, junto com a terminação ".py".
 
-- ***Exemplo*** 'py exercicio01.py' (Neste caso, o comando é mais utilizado em Windows.)
+- ***Exemplo:*** 'py exercicio01.py' (Neste caso, o comando é mais utilizado em Windows.)
